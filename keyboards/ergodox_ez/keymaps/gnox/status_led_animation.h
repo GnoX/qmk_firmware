@@ -5,10 +5,10 @@
 #ifndef QMK_FIRMWARE_KEYFUNCTIONS_H
 #define QMK_FIRMWARE_KEYFUNCTIONS_H
 
-#define BRIGHTNESS_HI LED_BRIGHTNESS_HI / 2
+#define BRIGHTNESS_HI LED_BRIGHTNESS_HI - 40
 #define BRIGHTNESS_LO LED_BRIGHTNESS_LO
 
-#define ANIM_BREATH_STEP 5
+#define ANIM_BREATH_STEP 10
 #define ANIM_BLINK_STEP_MS 200
 
 
@@ -20,9 +20,6 @@ typedef enum animation {
 
 animation_t animation_state[3];
 
-static uint16_t anim_blink_timer;
-static uint16_t anim_breath_timer;
-static uint8_t anim_step = ANIM_BREATH_STEP;
 
 void quintary_led_set(uint8_t led, uint8_t num) {
     switch (num) {
@@ -53,9 +50,13 @@ void quintary_led_set(uint8_t led, uint8_t num) {
 
 }
 
-bool animate_led_breath_step(uint8_t led) {
+uint8_t animate_led_breath_step(void) {
+    static uint16_t anim_breath_timer;
+    static uint8_t anim_step = ANIM_BREATH_STEP;
     static uint8_t anim;
+
     if (timer_elapsed(anim_breath_timer) > 20) {
+        anim_breath_timer = timer_read();
         anim += anim_step;
         if (anim >= BRIGHTNESS_HI) {
             anim = BRIGHTNESS_HI;
@@ -64,44 +65,37 @@ bool animate_led_breath_step(uint8_t led) {
             anim = BRIGHTNESS_LO;
             anim_step = ANIM_BREATH_STEP;
         }
-        ergodox_right_led_set(led, anim);
-        return true;
     }
-    return false;
+    return anim;
 }
 
-bool animate_led_blink_step(uint8_t led) {
-    static bool on[3];
+uint8_t animate_led_blink_step(void) {
+    static uint16_t anim_blink_timer;
+    static bool on;
+
     if (timer_elapsed(anim_blink_timer) > ANIM_BLINK_STEP_MS) {
-        if (on[led - 1]) {
-            ergodox_right_led_set(led, BRIGHTNESS_HI);
-        } else {
-            ergodox_right_led_set(led, BRIGHTNESS_LO);
-        }
-        on[led - 1] = !on[led - 1];
-        return true;
+        anim_blink_timer = timer_read();
+        on = !on;
     }
-    return false;
+    return on ? BRIGHTNESS_HI : 0;
 }
 
 void animation_loop(void) {
-    bool reset_blink_timer = false;
-    bool reset_breath_timer = false;
+    uint8_t blink_value = animate_led_blink_step();
+    uint8_t breath_value = animate_led_breath_step();
 
-    for (uint8_t i = 0; i < 3; ++i) {
-        switch (animation_state[i]) {
+    for (uint8_t led = 0; led < 3; ++led) {
+        switch (animation_state[led]) {
             case ANIMATION_NONE:
                 break;
             case ANIMATION_BLINK:
-                reset_blink_timer = animate_led_blink_step(i + 1);
+                ergodox_right_led_set(led + 1, blink_value);
                 break;
             case ANIMATION_BREATH:
-                reset_breath_timer = animate_led_breath_step(i + 1);
+                ergodox_right_led_set(led + 1, breath_value);
                 break;
         }
     }
-    if (reset_blink_timer) anim_blink_timer = timer_read();
-    if (reset_breath_timer) anim_breath_timer = timer_read();
 }
 
 
