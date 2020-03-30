@@ -1,4 +1,4 @@
-/* Copyright 2019 Rys Sommefeldt
+/* Copyright 2019
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,12 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Sendstring lookup tables for UK layouts
+// Sendstring lookup tables for Slovenian layouts
 
 #pragma once
 
-#include "keymap_uk.h"
+#include "keymap_slovenian.h"
 #include "quantum.h"
+
+// clang-format off
 
 const uint8_t ascii_to_shift_lut[16] PROGMEM = {
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
@@ -27,15 +29,35 @@ const uint8_t ascii_to_shift_lut[16] PROGMEM = {
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
 
-    KCLUT_ENTRY(0, 1, 1, 0, 1, 1, 1, 0),
-    KCLUT_ENTRY(1, 1, 1, 1, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 0),
+    KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 0, 1),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
-    KCLUT_ENTRY(0, 0, 1, 0, 1, 0, 1, 1),
+    KCLUT_ENTRY(0, 0, 1, 1, 0, 1, 1, 1),
+    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
-    KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
-    KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 1, 1),
+    KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 0, 1),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0)
+};
+
+const uint8_t ascii_to_altgr_lut[16] PROGMEM = {
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 1, 0),
+    KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 1, 0)
@@ -45,33 +67,34 @@ const uint8_t ascii_to_keycode_lut[128] PROGMEM = {
     // NUL   SOH      STX      ETX      EOT      ENQ      ACK      BEL
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     // BS    TAB      LF       VT       FF       CR       SO       SI
-    KC_BSPC, KC_TAB, KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_BSPC, KC_TAB,  KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     // DLE   DC1      DC2      DC3      DC4      NAK      SYN      ETB
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     // CAN   EM       SUB      ESC      FS       GS       RS       US
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
     //       !        "        #        $        %        &        '
-    KC_SPC,  UK_1,    UK_2,    UK_HASH, UK_4,    UK_5,    UK_7,    UK_QUOT,
+    KC_SPC,  SI_1,    SI_2,    SI_3,    SI_4,    SI_5,    SI_6,    SI_QUOT,
     // (     )        *        +        ,        -        .        /
-    UK_9, UK_0, UK_8, UK_EQL, UK_COMM, UK_MINS, UK_DOT, UK_SLSH,
+    SI_8,    SI_9,    SI_PLUS, SI_PLUS, SI_COMM, SI_MINS, SI_DOT,  SI_7,
     // 0     1        2        3        4        5        6        7
-    UK_0, UK_1, UK_2, UK_3, UK_4, UK_5, UK_6, UK_7,
+    SI_0,    SI_1,    SI_2,    SI_3,    SI_4,    SI_5,    SI_6,    SI_7,
     // 8     9        :        ;        <        =        >        ?
-    UK_8, UK_9, UK_SCLN, UK_SCLN, UK_COMM, UK_EQL, UK_DOT, UK_SLSH,
+    SI_8,    SI_9,    SI_DOT,  SI_COMM, SI_LABK, SI_0,    SI_LABK, SI_QUOT,
     // @     A        B        C        D        E        F        G
-    UK_QUOT, UK_A, UK_B, UK_C, UK_D, UK_E, UK_F, UK_G,
+    SI_V,    SI_A,    SI_B,    SI_C,    SI_D,    SI_E,    SI_F,    SI_G,
     // H     I        J        K        L        M        N        O
-    UK_H, UK_I, UK_J, UK_K, UK_L, UK_M, UK_N, UK_O,
+    SI_H,    SI_I,    SI_J,    SI_K,    SI_L,    SI_M,    SI_N,    SI_O,
     // P     Q        R        S        T        U        V        W
-    UK_P, UK_Q, UK_R, UK_S, UK_T, UK_U, UK_V, UK_W,
+    SI_P,    SI_Q,    SI_R,    SI_S,    SI_T,    SI_U,    SI_V,    SI_W,
     // X     Y        Z        [        \        ]        ^        _
-    UK_X, UK_Y, UK_Z, UK_LBRC, UK_BSLS, UK_RBRC, UK_6, UK_MINS,
+    SI_X,    SI_Y,    SI_Z,    SI_F,    SI_Q,    SI_G,    SI_3,    SI_MINS,
     // `     a        b        c        d        e        f        g
-    UK_GRV, UK_A, UK_B, UK_C, UK_D, UK_E, UK_F, UK_G,
+    SI_7,    SI_A,    SI_B,    SI_C,    SI_D,    SI_E,    SI_F,    SI_G,
     // h     i        j        k        l        m        n        o
-    UK_H, UK_I, UK_J, UK_K, UK_L, UK_M, UK_N, UK_O,
+    SI_H,    SI_I,    SI_J,    SI_K,    SI_L,    SI_M,    SI_N,    SI_O,
     // p     q        r        s        t        u        v        w
-    UK_P, UK_Q, UK_R, UK_S, UK_T, UK_U, UK_V, UK_W,
+    SI_P,    SI_Q,    SI_R,    SI_S,    SI_T,    SI_U,    SI_V,    SI_W,
     // x     y        z        {        |        }        ~        DEL
-    UK_X, UK_Y, UK_Z, UK_LBRC, UK_BSLS, UK_RBRC, UK_HASH, KC_DEL};
+    SI_X,    SI_Y,    SI_Z,    SI_B,    SI_W,    SI_N,    SI_1,    KC_DEL
+};

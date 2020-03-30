@@ -1,4 +1,4 @@
-/* Copyright 2015-2016 Jack Humbert
+/* Copyright 2020
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,11 +22,11 @@
 
 /*
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
- * │ º │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ ' │ ¡ │       │
+ * │ \ │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ ' │ « │       │
  * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
- * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ ` │ + │     │
+ * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ + │ ´ │     │
  * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
- * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ Ñ │ ´ │ Ç │    │
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ Ç │ º │ ~ │    │
  * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
  * │    │ < │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ - │          │
  * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
@@ -34,65 +34,65 @@
  * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
  */
 // Row 1
-#define ES_MORD KC_GRV  // º
-#define ES_1    KC_1    // 1
-#define ES_2    KC_2    // 2
-#define ES_3    KC_3    // 3
-#define ES_4    KC_4    // 4
-#define ES_5    KC_5    // 5
-#define ES_6    KC_6    // 6
-#define ES_7    KC_7    // 7
-#define ES_8    KC_8    // 8
-#define ES_9    KC_9    // 9
-#define ES_0    KC_0    // 0
-#define ES_QUOT KC_MINS // '
-#define ES_IEXL KC_EQL  // ¡
+#define PT_BSLS KC_GRV  // (backslash)
+#define PT_1    KC_1    // 1
+#define PT_2    KC_2    // 2
+#define PT_3    KC_3    // 3
+#define PT_4    KC_4    // 4
+#define PT_5    KC_5    // 5
+#define PT_6    KC_6    // 6
+#define PT_7    KC_7    // 7
+#define PT_8    KC_8    // 8
+#define PT_9    KC_9    // 9
+#define PT_0    KC_0    // 0
+#define PT_QUOT KC_MINS // '
+#define PT_LDAQ KC_EQL  // «
 // Row 2
-#define ES_Q    KC_Q    // Q
-#define ES_W    KC_W    // W
-#define ES_E    KC_E    // E
-#define ES_R    KC_R    // R
-#define ES_T    KC_T    // T
-#define ES_Y    KC_Y    // Y
-#define ES_U    KC_U    // U
-#define ES_I    KC_I    // I
-#define ES_O    KC_O    // O
-#define ES_P    KC_P    // P
-#define ES_GRV  KC_LBRC // ` (dead)
-#define ES_PLUS KC_RBRC // +
+#define PT_Q    KC_Q    // Q
+#define PT_W    KC_W    // W
+#define PT_E    KC_E    // E
+#define PT_R    KC_R    // R
+#define PT_T    KC_T    // T
+#define PT_Y    KC_Y    // Y
+#define PT_U    KC_U    // U
+#define PT_I    KC_I    // I
+#define PT_O    KC_O    // O
+#define PT_P    KC_P    // P
+#define PT_PLUS KC_LBRC // +
+#define PT_ACUT KC_RBRC // ´ (dead)
 // Row 3
-#define ES_A    KC_A    // A
-#define ES_S    KC_S    // S
-#define ES_D    KC_D    // D
-#define ES_F    KC_F    // F
-#define ES_G    KC_G    // G
-#define ES_H    KC_H    // H
-#define ES_J    KC_J    // J
-#define ES_K    KC_K    // K
-#define ES_L    KC_L    // L
-#define ES_NTIL KC_SCLN // Ñ
-#define ES_ACUT KC_QUOT // ´ (dead)
-#define ES_CCED KC_NUHS // Ç
+#define PT_A    KC_A    // A
+#define PT_S    KC_S    // S
+#define PT_D    KC_D    // D
+#define PT_F    KC_F    // F
+#define PT_G    KC_G    // G
+#define PT_H    KC_H    // H
+#define PT_J    KC_J    // J
+#define PT_K    KC_K    // K
+#define PT_L    KC_L    // L
+#define PT_CCED KC_SCLN // Ç
+#define PT_MORD KC_QUOT // º
+#define PT_TILD KC_NUHS // ~ (dead)
 // Row 4
-#define ES_LABK KC_NUBS // <
-#define ES_Z    KC_Z    // Z
-#define ES_X    KC_X    // X
-#define ES_C    KC_C    // C
-#define ES_V    KC_V    // V
-#define ES_B    KC_B    // B
-#define ES_N    KC_N    // N
-#define ES_M    KC_M    // M
-#define ES_COMM KC_COMM // ,
-#define ES_DOT  KC_DOT  // .
-#define ES_MINS KC_SLSH // -
+#define PT_LABK KC_NUBS // <
+#define PT_Z    KC_Z    // Z
+#define PT_X    KC_X    // X
+#define PT_C    KC_C    // C
+#define PT_V    KC_V    // V
+#define PT_B    KC_B    // B
+#define PT_N    KC_N    // N
+#define PT_M    KC_M    // M
+#define PT_COMM KC_COMM // ,
+#define PT_DOT  KC_DOT  // .
+#define PT_MINS KC_SLSH // -
 
 /* Shifted symbols
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
- * │ ª │ ! │ " │ · │ $ │ % │ & │ / │ ( │ ) │ = │ ? │ ¿ │       │
+ * │ | │ ! │ " │ # │ $ │ % │ & │ / │ ( │ ) │ = │ ? │ » │       │
  * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
- * │     │   │   │   │   │   │   │   │   │   │   │ ^ │ * │     │
+ * │     │   │   │   │   │   │   │   │   │   │   │ * │ ` │     │
  * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
- * │      │   │   │   │   │   │   │   │   │   │   │ ¨ │   │    │
+ * │      │   │   │   │   │   │   │   │   │   │   │ ª │ ^ │    │
  * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
  * │    │ > │   │   │   │   │   │   │   │ ; │ : │ _ │          │
  * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
@@ -100,37 +100,38 @@
  * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
  */
 // Row 1
-#define ES_FORD S(ES_MORD) // ª
-#define ES_EXLM S(ES_1)    // !
-#define ES_DQUO S(ES_2)    // "
-#define ES_BULT S(ES_3)    // ·
-#define ES_DLR  S(ES_4)    // $
-#define ES_PERC S(ES_5)    // %
-#define ES_AMPR S(ES_6)    // &
-#define ES_SLSH S(ES_7)    // /
-#define ES_LPRN S(ES_8)    // (
-#define ES_RPRN S(ES_9)    // )
-#define ES_EQL  S(ES_0)    // =
-#define ES_QUES S(ES_QUOT) // ?
-#define ES_IQUE S(ES_IEXL) // ¿
+#define PT_PIPE S(PT_BSLS) // |
+#define PT_EXLM S(PT_1)    // !
+#define PT_DQUO S(PT_2)    // "
+#define PT_HASH S(PT_3)    // #
+#define PT_DLR  S(PT_4)    // $
+#define PT_PERC S(PT_5)    // %
+#define PT_AMPR S(PT_6)    // &
+#define PT_SLSH S(PT_7)    // /
+#define PT_LPRN S(PT_8)    // (
+#define PT_RPRN S(PT_9)    // )
+#define PT_EQL  S(PT_0)    // =
+#define PT_QUES S(PT_QUOT) // ?
+#define PT_RDAQ S(PT_LDAQ) // »
 // Row 2
-#define ES_CIRC S(ES_GRV)  // ^ (dead)
-#define ES_ASTR S(ES_PLUS) // *
+#define PT_ASTR S(PT_PLUS) // *
+#define PT_GRV  S(PT_ACUT) // ` (dead)
 // Row 3
-#define ES_DIAE S(ES_GRV)  // ¨ (dead)
+#define PT_FORD S(PT_MORD) // ª
+#define PT_CIRC S(PT_TILD) // ^ (dead)
 // Row 4
-#define ES_RABK S(ES_LABK) // >
-#define ES_SCLN S(KC_COMM) // ;
-#define ES_COLN S(KC_DOT)  // :
-#define ES_UNDS S(ES_MINS) // _
+#define PT_RABK S(PT_LABK) // >
+#define PT_SCLN S(PT_COMM) // ;
+#define PT_COLN S(PT_DOT)  // :
+#define PT_UNDS S(PT_MINS) // _
 
 /* AltGr symbols
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
- * │ \ │ | │ @ │ # │ ~ │ € │ ¬ │   │   │   │   │   │   │       │
+ * │   │   │ @ │ £ │ § │   │   │ { │ [ │ ] │ } │   │   │       │
  * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
- * │     │   │   │   │   │   │   │   │   │   │   │ [ │ ] │     │
+ * │     │   │   │ € │   │   │   │   │   │   │   │ ¨ │   │     │
  * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
- * │      │   │   │   │   │   │   │   │   │   │   │ { │ } │    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │   │    │
  * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
  * │    │   │   │   │   │   │   │   │   │   │   │   │          │
  * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
@@ -138,25 +139,13 @@
  * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
  */
 // Row 1
-#define ES_BSLS ALGR(ES_MORD) // (backslash)
-#define ES_PIPE ALGR(ES_1)    // |
-#define ES_AT   ALGR(ES_2)    // @
-#define ES_HASH ALGR(ES_3)    // #
-#define ES_TILD ALGR(ES_4)    // ~
-#define ES_EURO ALGR(ES_5)    // €
-#define ES_NOT  ALGR(ES_6)    // ¬
+#define PT_AT   ALGR(PT_2)    // @
+#define PT_PND  ALGR(PT_3)    // £
+#define PT_SECT ALGR(PT_4)    // §
+#define PT_LCBR ALGR(PT_7)    // {
+#define PT_LBRC ALGR(PT_8)    // [
+#define PT_RBRC ALGR(PT_9)    // ]
+#define PT_RCBR ALGR(PT_0)    // }
 // Row 2
-#define ES_LBRC ALGR(ES_GRV)  // [
-#define ES_RBRC ALGR(ES_PLUS) // ]
-// Row 3
-#define ES_LCBR ALGR(ES_ACUT) // {
-#define ES_RCBR ALGR(ES_CCED) // }
-
-// DEPRECATED
-#define ES_OVRR ES_MORD
-#define ES_APOS ES_QUOT
-#define ES_LESS ES_LABK
-#define ES_ASML ES_FORD
-#define ES_OVDT ES_BULT
-#define ES_UMLT ES_DIAE
-#define ES_GRTR ES_RABK
+#define PT_DIAE ALGR(PT_PLUS) // ¨ (dead)
+#define PT_EURO ALGR(PT_E)    // €
